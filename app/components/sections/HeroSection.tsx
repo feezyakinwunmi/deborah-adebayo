@@ -4,8 +4,12 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown } from "lucide-react";
+import CalendlyModal from "./CalendlyModal";
+import { useState } from "react";
 
 export default function HeroSection() {
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+
   return (
     <section  className="relative pt-60 pb-20 md:pb-0 md:pt-0 min-h-screen bg-black text-white overflow-hidden">
       {/* Floating animated shapes (purple tones) */}
@@ -58,17 +62,21 @@ export default function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-6">
               <Link
-                href="https://craftsandimpressions.com/pages/books"
+                href="https://a.co/d/c3jmUUu"
                 className="bg-purple-600 text-white px-10 py-5 rounded-full font-medium text-lg hover:bg-purple-700 transition shadow-xl inline-flex items-center justify-center"
               >
                 Order the Book
               </Link>
-              <Link
-                href="/contact"
-                className="border-2 border-purple-500 text-purple-400 px-10 py-5 rounded-full font-medium text-lg hover:bg-purple-900/30 transition backdrop-blur-sm"
+
+              <button
+                onClick={() => setIsCalendlyOpen(true)}
+                className="bg-purple-600 text-white px-10 py-5 rounded-full font-medium text-lg hover:bg-purple-700 transition shadow-xl inline-flex items-center justify-center"
               >
-                Book Deborah to Speak
-              </Link>
+                Book a Call
+              </button>
+
+             
+
             </div>
           </motion.div>
 
@@ -114,6 +122,9 @@ export default function HeroSection() {
       >
         <ArrowDown size={32} />
       </motion.div>
+      <CalendlyModal isOpen={isCalendlyOpen} onClose={() => setIsCalendlyOpen(false)} />
     </section>
+      
   );
+  
 }

@@ -24,6 +24,7 @@ export default function ContactSection() {
 
 const onSubmit = async (data: FormData) => {
   try {
+console.log("Form submitting this data:", data); // ← MUST see { name: "...", email: "..." }    
     const res = await fetch("/api/subscribe", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

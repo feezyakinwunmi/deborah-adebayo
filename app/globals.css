@@ -24,3 +24,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* Testimonials Swiper */
+.testimonials-swiper .swiper-pagination-bullet {
+  background: #9333ea;
+  opacity: 0.4;
+}
+.testimonials-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #9333ea;
+}

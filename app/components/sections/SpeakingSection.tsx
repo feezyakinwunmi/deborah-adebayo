@@ -4,12 +4,18 @@ import { motion } from "framer-motion";
 import { Mic2, Users, Calendar, Heart } from "lucide-react";
 import Link from "next/link";
 
+import {useState} from "react";
+import CalendlyModal from "./CalendlyModal";
+
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
 };
 
 export default function SpeakingSection() {
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+
   return (
     <section id="Speaking" className="py-24 md:py-32 bg-black text-white relative overflow-hidden">
       {/* Subtle animated purple smoke/particles */}
@@ -105,14 +111,15 @@ export default function SpeakingSection() {
             </ul>
           </div>
 
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-4 bg-purple-600 hover:bg-purple-500 text-white px-12 py-6 rounded-full font-medium text-xl shadow-xl transition-all hover:shadow-purple-500/40"
+          <button
+            onClick={() => setIsCalendlyOpen(true)}
+            className="bg-purple-600 text-white px-10 py-5 rounded-full font-medium text-lg hover:bg-purple-700 transition shadow-xl inline-flex items-center justify-center"
           >
-            Book Deborah to Speak
-          </Link>
+            Book Deborah for Your Event
+          </button>
         </motion.div>
       </div>
+      <CalendlyModal isOpen={isCalendlyOpen} onClose={() => setIsCalendlyOpen(false)} />
     </section>
   );
 }

@@ -37,7 +37,7 @@ export default function BookSection() {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-5xl font-serif font-bold">
-            They Tried to Rename Us.
+            They Tried to Rename Us. <br/>
             <span className="text-purple-300">We Remembered.</span>
           </h2>
           <p className="mt-6 text-xl md:text-xl opacity-90 max-w-4xl mx-auto">

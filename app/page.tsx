@@ -11,6 +11,10 @@ import BookSection from "./components/sections/BookSection";
  import SpeakingSection from "./components/sections/SpeakingSection";
  import QuoteSection from "./components/sections/QuoteSection";
   import ContactSection from "./components/sections/ContactSection";
+  import TestimonialsSection from "./components/sections/TestimonialsSection";
+import ReviewFormSection from "./components/sections/ReviewFormSection";
+import NoteFormSection from "./components/sections/NoteFormSection";
+import ReadSection from "./components/sections/ReadSection";
 
 export default function Home() {
   return (
@@ -20,6 +24,14 @@ export default function Home() {
       <BookSection />
       <SpeakingSection />
       <QuoteSection />
+      <TestimonialsSection />       
+       <ReadSection />
+
+       <div className="flex flex-col md:flex-row  bg-black"> <NoteFormSection />
+    <ReviewFormSection /> </div>
+     
+
+
       <ContactSection />
     
 

@@ -13,20 +13,37 @@ const transporter = nodemailer.createTransport({
 
 const subscribersFile = path.join(process.cwd(), "data", "subscribers.json");
 
-export async function POST(req: NextRequest) {
-  try {
-    const { name, email } = await req.json();
 
-    if (!name || !email) {
-      return NextResponse.json({ error: "Missing name or email" }, { status: 400 });
+
+export async function POST(req: NextRequest) {
+  console.log("=== SUBSCRIBE ROUTE CALLED ===");
+  console.log("Method:", req.method);
+  console.log("Headers:", Object.fromEntries(req.headers));
+
+  try {
+    let body;
+    try {
+      body = await req.json();
+      console.log("Parsed body:", body);
+    } catch (jsonErr) {
+      console.error("JSON parse failed:", jsonErr);
+      return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const { name, email } = body;
+console.log("Preparing sendMail - to value:", email); 
 
-    // Send Email 1 immediately
-    await transporter.sendMail({
+if (!email || typeof email !== "string" || !email.includes("@")) {
+  console.log("Invalid to address - aborting");
+  return NextResponse.json({ error: "Invalid recipient email" }, { status: 400 });
+}
+
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
+
+await transporter.sendMail({
   from: `"Deborah Adebayo" <${process.env.EMAIL_USER}>`,
-  to: email,
+  to: email.trim(), // ← trim any whitespace + explicit guard
   subject: "Here is your copy (and a warm welcome)",
   html: `
     <div style="font-family: 'Inter', sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
@@ -44,9 +61,12 @@ export async function POST(req: NextRequest) {
     </div>
   `,
 });
+    // If using Nodemailer (your current code)
+  
+    console.log("Email 1 sent successfully");
 
-    // Save subscriber with future send dates (in ms)
-    let subscribers = [];
+    // ... your subscriber saving code ...
+       let subscribers = [];
     try {
       const data = await fs.readFile(subscribersFile, "utf-8");
       subscribers = JSON.parse(data);
@@ -67,22 +87,12 @@ export async function POST(req: NextRequest) {
       email3Date: now + 6 * 24 * 60 * 60 * 1000, // +4 more days (total 6 from now)
     });
 
-    
-//for test alone 
-//     subscribers.push({
-//   name,
-//   email,
-//   email2Sent: false,
-//   email2Date: now + 2 * 60 * 1000,      // 2 minutes
-//   email3Sent: false,
-//   email3Date: now + 6 * 60 * 1000,      // 6 minutes
-// });
-
-    await fs.writeFile(subscribersFile, JSON.stringify(subscribers, null, 2));
-
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error:", error);
-    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
+    console.error("Subscribe route crashed:", error);
+    return NextResponse.json(
+      { error: "Server error", details: (error as Error).message },
+      { status: 500 }
+    );
   }
 }

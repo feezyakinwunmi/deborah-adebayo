@@ -10,7 +10,7 @@ const fadeIn = {
 
 export default function QuoteSection() {
   return (
-    <section id="Quote" className="py-24 bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-hidden">
+    <section id="Quote" className="py-10 bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-hidden">
       {/* Subtle luxury accents - soft gold/beige waves */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-100 via-transparent to-transparent" />
