@@ -22,16 +22,24 @@ export default function ContactSection() {
     resolver: zodResolver(formSchema),
   });
 
- const onSubmit = async (data: FormData) => {
-  const res = await fetch("/api/subscribe", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  if (res.ok) {
-    alert("Subscribed! Check your email.");
-  } else {
-    alert("Error subscribing.");
+const onSubmit = async (data: FormData) => {
+  try {
+    const res = await fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+
+    if (!res.ok) {
+      throw new Error(result.details || result.error || "Unknown error");
+    }
+
+    alert("Success! Check your inbox for the welcome email.");
+  } catch (err: any) {
+    console.error("Form error:", err);
+    alert(`Error: ${err.message}`);
   }
 };
 
@@ -153,8 +161,13 @@ export default function ContactSection() {
           transition={{ delay: 0.4 }}
           className="text-center mt-16 pt-10 border-t border-gray-200 text-gray-500 text-sm"
         >
-          © 2024 Deborah Adebayo. Powered by Anevisas Place Inc.
+          © 2026 Deborah Adebayo. Powered by Thriveon
         </motion.div>
+        <div className="flex justify-center gap-8 text-sm text-gray-600 mt-8">
+  <a href="/privacy" className="hover:text-purple-600">Privacy Policy</a>
+  <a href="/terms" className="hover:text-purple-600">Terms of Use</a>
+  <a href="/cookies" className="hover:text-purple-600">Cookies Policy</a>
+</div>
       </div>
     </section>
   );

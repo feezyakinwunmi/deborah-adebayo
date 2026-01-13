@@ -7,7 +7,7 @@ import { ArrowDown } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <section id="Home" className="relative min-h-screen bg-black text-white overflow-hidden">
+    <section  className="relative pt-60 pb-20 md:pb-0 md:pt-0 min-h-screen bg-black text-white overflow-hidden">
       {/* Floating animated shapes (purple tones) */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Small floating blobs / particles */}
@@ -45,13 +45,13 @@ export default function HeroSection() {
             transition={{ duration: 1, delay: 0.3 }}
             className="space-y-8"
           >
-            <h1 className="text-5xl md:text-5xl font-serif font-bold leading-tight">
+            <h1 className="text-4xl md:text-5xl font-serif font-bold leading-tight">
               When the World Forgets Your Name,
               <br />
               <span className="text-purple-400">Remember Who You Are.</span>
             </h1>
 
-            <p className="text-xl md:text-2xl font-light opacity-90">
+            <p className="text-lg md:text-2xl font-light opacity-90">
               Deborah Adebayo <br />
               Author of <em>Names I&apos;ve Worn</em> • Speaker • Founder
             </p>

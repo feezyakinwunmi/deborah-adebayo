@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
-
+import type { Variants } from "framer-motion";
 const fadeIn = {
-  hidden: { opacity: 0, scale: 0.95 },
+  hidden: { opacity: 0, scale: 0.95, transition: { duration: 0.01 } }, // Add a dummy transition
   visible: { opacity: 1, scale: 1, transition: { duration: 1.2, ease: "easeOut" } },
 };
 
@@ -21,7 +21,7 @@ export default function QuoteSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-150px" }}
-          variants={fadeIn}
+          variants={fadeIn as Variants}
           className="max-w-5xl mx-auto text-center space-y-12"
         >
           {/* Decorative quote icon */}

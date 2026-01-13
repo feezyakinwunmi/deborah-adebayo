@@ -17,7 +17,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center pointer-events-none">
+    <header className="fixed top-4  left-0 right-0 z-50 flex justify-center pointer-events-none">
       <motion.nav
         initial={{ opacity: 0, y: -20, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
