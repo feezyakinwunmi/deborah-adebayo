@@ -97,10 +97,10 @@ const onSubmit = async (data: FormData) => {
             <div>
               <p className="text-sm text-gray-500 mb-3">Follow the Journey</p>
               <div className="flex gap-6">
-                <a href="#" className="hover:text-purple-600 transition">
+                <a href="https://www.facebook.com/share/1ABWA1SPtA/?mibextid=wwXIfr" className="hover:text-purple-600 transition">
                   <Facebook className="w-8 h-8" />
                 </a>
-                <a href="#" className="hover:text-purple-600 transition">
+                <a href="https://www.instagram.com/thedeborahadebayo?igsh=OWM2cXl5OWkwNWlw&utm_source=qr" className="hover:text-purple-600 transition">
                   <Instagram className="w-8 h-8" />
                 </a>
               </div>

@@ -81,7 +81,7 @@ export default function AboutSection() {
             </div>
             <h3 className="text-3xl font-serif font-bold text-purple-800 mb-4">The Professional</h3>
             <p className="text-gray-700 leading-relaxed">
-              Blending deep spiritual insight with over a decade of high-level operational leadership. Founder of Anevisas Place Inc. and experienced in operational leadership at Climate Action Network Canada.
+              Blending deep spiritual insight with over a decade of high-level operational leadership. Founder of Crafts and Impressions.
             </p>
           </motion.div>
         </div>

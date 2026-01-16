@@ -93,7 +93,7 @@ export default function Header() {
                       onClick={() => setIsOpen(false)}
                     >
                       {item.name}
-                    </Link>
+                    </Link> 
                   </li>
                 ))}
               </ul>
