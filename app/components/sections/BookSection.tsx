@@ -116,7 +116,7 @@ export default function BookSection() {
 
             {/* CTA */}
             <Link
-              href="https://craftsandimpressions.com/pages/books"
+              href="https://a.co/d/c3jmUUu"
               className="inline-flex items-center gap-3 bg-purple-600 hover:bg-purple-500 text-white px-12 py-6 rounded-full font-medium text-xl shadow-xl transition-all hover:shadow-purple-500/40"
             >
               <BookOpen className="w-6 h-6" />

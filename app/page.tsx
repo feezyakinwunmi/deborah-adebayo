@@ -47,11 +47,11 @@ export default function Home() {
         className="fixed bottom-8 right-8 z-50"
       >
         <Link
-          href="https://craftsandimpressions.com/pages/books"
+          href="https://a.co/d/c3jmUUu"
           className="flex items-center gap-3 bg-primary-600 text-white px-6 py-4 rounded-full shadow-xl hover:bg-primary-700 transition-colors group"
         >
-          <BookOpen className="w-5 h-5" />
-          <span className="font-medium">Order Names I've Worn</span>
+          <BookOpen className="w-5 h-5 text-purple-600" />
+          <span className="font-medium text-purple-600">Order Names I've Worn</span>
         </Link>
       </motion.div>
     </main>
