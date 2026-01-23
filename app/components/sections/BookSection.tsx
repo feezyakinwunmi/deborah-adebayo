@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { BookOpen, CheckCircle2 } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
@@ -11,6 +12,20 @@ const fadeIn = {
 };
 
 export default function BookSection() {
+
+  const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+  
+    // Close dropdown when clicking outside
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+          setIsOpen(false);
+        }
+      };
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
   return (
     <section id="Book" className="py-24 md:py-32 bg-gradient-to-b from-purple-900 via-purple-800 to-purple-950 text-white relative overflow-hidden">
       {/* Subtle floating purple particles/smoke accent */}
@@ -115,16 +130,67 @@ export default function BookSection() {
             </div>
 
             {/* CTA */}
+         <div className="relative inline-block" ref={dropdownRef}>
+      {/* The main button that toggles the dropdown */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="bg-purple-600 text-white px-10 py-5 rounded-full font-medium text-lg hover:bg-purple-700 transition shadow-xl inline-flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+      >
+<BookOpen className="w-6 h-6" />
+              Purchase Your Copy 
+                      {/* Arrow icon – rotates when open */}
+        <svg
+          className={`w-5 h-5 transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+
+      {/* Dropdown menu – appears below when open */}
+      {isOpen && (
+        <div className="absolute right-0 mt-3 w-64 bg-white rounded-xl shadow-2xl border border-purple-100 overflow-hidden z-50">
+          <div className="py-2">
             <Link
               href="https://a.co/d/c3jmUUu"
-              className="inline-flex items-center gap-3 bg-purple-600 hover:bg-purple-500 text-white px-12 py-6 rounded-full font-medium text-xl shadow-xl transition-all hover:shadow-purple-500/40"
+              className="block px-6 py-4 text-gray-800 hover:bg-purple-50 hover:text-purple-700 transition font-medium border-b border-gray-100 last:border-b-0"
+              onClick={() => setIsOpen(false)} // close on click
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <BookOpen className="w-6 h-6" />
-              Purchase Your Copy
+              Order from Amazon
             </Link>
+
+            <Link
+              href="https://selar.com/56f6c61m95" // ← Replace with actual Selar URL
+              className="block px-6 py-4 text-gray-800 hover:bg-purple-50 hover:text-purple-700 transition font-medium"
+              onClick={() => setIsOpen(false)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Order from Selar
+            </Link>
+          </div>
+        </div>
+      )}
+    </div>
           </motion.div>
         </div>
       </div>
     </section>
   );
-}
+}  
+
+
+

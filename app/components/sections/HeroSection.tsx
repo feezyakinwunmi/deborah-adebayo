@@ -6,10 +6,23 @@ import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 import CalendlyModal from "./CalendlyModal";
 import { useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function HeroSection() {
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
   return (
     <section  className="relative pt-60 pb-20 md:pb-0 md:pt-0 min-h-screen bg-black text-white overflow-hidden">
       {/* Floating animated shapes (purple tones) */}
@@ -61,12 +74,60 @@ export default function HeroSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6">
-              <Link
-                href="https://a.co/d/c3jmUUu"
-                className="bg-purple-600 text-white px-10 py-5 rounded-full font-medium text-lg hover:bg-purple-700 transition shadow-xl inline-flex items-center justify-center"
-              >
-                Order the Book
-              </Link>
+           <div className="relative inline-block" ref={dropdownRef}>
+      {/* The main button that toggles the dropdown */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="bg-purple-600 text-white px-10 py-5 rounded-full font-medium text-lg hover:bg-purple-700 transition shadow-xl inline-flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+      >
+        Order the Book
+        {/* Arrow icon – rotates when open */}
+        <svg
+          className={`w-5 h-5 transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+
+      {/* Dropdown menu – appears below when open */}
+      {isOpen && (
+        <div className="absolute right-0 mt-3 w-64 bg-white rounded-xl shadow-2xl border border-purple-100 overflow-hidden z-50">
+          <div className="py-2">
+            <Link
+              href="https://a.co/d/c3jmUUu"
+              className="block px-6 py-4 text-gray-800 hover:bg-purple-50 hover:text-purple-700 transition font-medium border-b border-gray-100 last:border-b-0"
+              onClick={() => setIsOpen(false)} // close on click
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Order from Amazon
+            </Link>
+
+            <Link
+              href="https://selar.com/56f6c61m95" // ← Replace with actual Selar URL
+              className="block px-6 py-4 text-gray-800 hover:bg-purple-50 hover:text-purple-700 transition font-medium"
+              onClick={() => setIsOpen(false)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Order from Selar
+            </Link>
+          </div>
+        </div>
+      )}
+    </div>
 
               <button
                 onClick={() => setIsCalendlyOpen(true)}
