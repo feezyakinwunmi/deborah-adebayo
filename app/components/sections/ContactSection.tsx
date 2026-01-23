@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Mail, Phone, Facebook, Instagram } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import * as z from "zod";
 
 const formSchema = z.object({
@@ -162,7 +163,7 @@ console.log("Form submitting this data:", data); // ← MUST see { name: "...", 
           transition={{ delay: 0.4 }}
           className="text-center mt-16 pt-10 border-t border-gray-200 text-gray-500 text-sm"
         >
-          © 2026 Deborah Adebayo. Powered by Thriveon
+          © 2026 Deborah Adebayo. <Link href="https://ithriveonwisdom.com/">Powered by Thriveon</Link> 
         </motion.div>
         <div className="flex justify-center gap-8 text-sm text-gray-600 mt-8">
   <a href="/privacy" className="hover:text-purple-600">Privacy Policy</a>
