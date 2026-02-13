@@ -25,7 +25,6 @@ export default function Home() {
       <SpeakingSection />
       <QuoteSection />
       <TestimonialsSection />       
-       <ReadSection />
 
        <div className="flex flex-col md:flex-row  bg-black"> <NoteFormSection />
     <ReviewFormSection /> </div>
