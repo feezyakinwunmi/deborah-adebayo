@@ -33,6 +33,17 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
+            {/* add logo */}
+            <Link href="/">
+              <motion.img
+                src="/DA.jpeg"
+                alt="Deborah Adebayo"
+                className="w-8 h-8 rounded-full object-cover inline-block mr-2 border-2 border-purple-200 shadow-md"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              />
+            </Link>
             Deborah Adebayo
           </motion.div>
 

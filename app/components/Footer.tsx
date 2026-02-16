@@ -15,6 +15,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div className="md:col-span-1">
+            {/* Image */}
+              <motion.img                                                                                                                                                                                                                                                                                                                                                                                                                 
+                src="/DA.jpeg"
+                alt="Deborah Adebayo"
+                className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-purple-200 shadow-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              />
             <h2 className="text-2xl font-serif font-bold text-purple-800 mb-6">
               Deborah Adebayo
             </h2>
