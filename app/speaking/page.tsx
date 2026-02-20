@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, BookOpen, ChevronRight, X, Loader2, Search } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { JSX } from "react/jsx-runtime";
 
 type SpeakingItem = {
   id: string;
@@ -92,6 +93,10 @@ export default function SpeakingPage() {
   };
 
   const showDemo = items.length === 0 && !loading;
+
+  function stripHtml(arg0: JSX.Element[]): import("react").ReactNode {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-purple-50 py-20 md:py-32">
@@ -265,11 +270,11 @@ export default function SpeakingPage() {
                 </div>
 
                 <div className="prose prose-lg max-w-none text-gray-800 leading-relaxed mt-8">
-                  {selectedItem.description.split("\n").map((para, i) => (
+                   {stripHtml(selectedItem.description.split("\n").map((para, i) => (
                     <p key={i} className="mb-6">
                       {para}
                     </p>
-                  ))}
+                  )))}
                 </div>
               </div>
             </motion.div>
