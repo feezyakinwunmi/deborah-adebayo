@@ -52,6 +52,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Deborah Adebayo | Author • Speaker • Founder",
   description: "Meeting you at the intersection of Grit, Grace, and Truth.",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
